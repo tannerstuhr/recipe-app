@@ -15,7 +15,7 @@ def hello():
 @app.route('/api/search', methods=['GET'])
 def search_recipes():
     query = request.args.get('query')
-    api_key = '4ff44dbca2414abebca530b60704163c'  # Store API keys in environment variables
+    api_key = '4ff44dbca2414abebca530b60704163c'  # store in environment variable
     url = f"https://api.spoonacular.com/recipes/complexSearch?query={query}&apiKey={api_key}"
     response = requests.get(url)
     return jsonify(response.json())
