@@ -28,11 +28,21 @@ function Search() {
             <button onClick={searchRecipes}>Search</button>
             <ul>
                 {recipes.map((recipe) => (
-                    <li key={recipe.id}>
-                        {recipe.title}
-                        {/* Display image if available */}
-                        {recipe.image && <img src={recipe.image} alt={recipe.title} style={{ width: '100px' }} />}
-                    </li>
+                    // <div key={recipe.id} class="card" style={{ width: '100px' }} >
+                    //     <img src={recipe.image} alt={recipe.title}  class="card-img-top" ></img>\
+                    //     {recipe.title}
+                    //     {/* Display image if available */}
+                    //     {recipe.image && <img />}
+                    // </div>
+                    <div class="card" style={{ width: '18rem' }}>
+                    <img src={recipe.image} class="card-img-top" alt={recipe.title} />
+                    <div class="card-body">
+                        <h5 class="card-title">{recipe.title}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-outline-success">Save Recipe</a>
+                    </div>
+                    </div>
+
                 ))}
             </ul>
         </div>
