@@ -4,9 +4,10 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/recipeApp"  # Use your actual MongoDB URI
+app.config["MONGO_URI"] = "mongodb+srv://tstuhr:scrumptiouspassword@cluster0.bjqgpu5.mongodb.net/SCRUMptious?retryWrites=true&w=majority"
 mongo = PyMongo(app)
-CORS(app)
+
+CORS(app, supports_credentials=True)
 
 @app.route('/')
 def hello():
@@ -34,6 +35,21 @@ def like_recipe():
     # Store the like in the database
     mongo.db.likes.insert_one({'recipeId': recipe_id})
     return jsonify({'message': 'Recipe liked successfully'}), 201
+
+@app.route('/api/save_recipe', methods=['POST'])
+def save_recipe():
+    recipe = request.json
+    if not recipe:
+        return jsonify({'error': 'No recipe data provided'}), 400
+
+    mongo.db.recipes.insert_one(recipe)
+    return jsonify({'message': 'Recipe saved successfully'}), 201
+
+@app.route('/api/saved_recipes', methods=['GET'])
+def get_saved_recipes():
+    recipes = mongo.db.recipes.find()
+    return jsonify([recipe for recipe in recipes]), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
