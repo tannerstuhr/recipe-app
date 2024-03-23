@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 import requests
 from flask_pymongo import PyMongo
 from flask_cors import CORS
+from bson import json_util
+from bson.objectid import ObjectId
+import json
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://tstuhr:scrumptiouspassword@cluster0.bjqgpu5.mongodb.net/SCRUMptious?retryWrites=true&w=majority"
@@ -48,7 +51,9 @@ def save_recipe():
 @app.route('/api/saved_recipes', methods=['GET'])
 def get_saved_recipes():
     recipes = mongo.db.recipes.find()
-    return jsonify([recipe for recipe in recipes]), 200
+    # Convert the cursor to a list and then use json_util to handle MongoDB specific types
+    recipes_list = list(recipes)
+    return json.dumps(recipes_list, default=json_util.default), 200
 
 
 if __name__ == '__main__':

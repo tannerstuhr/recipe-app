@@ -27,8 +27,7 @@ function SavedRecipes() {
                 {savedRecipes.map((recipe) => (
                     <li key={recipe._id}>
                         <h3>{recipe.title}</h3>
-                        <p>{recipe.description}</p>
-                        {/* Display more recipe details here */}
+                        <img src={recipe.image} alt={recipe.title} />
                     </li>
                 ))}
             </ul>
