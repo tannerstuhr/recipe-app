@@ -31,6 +31,7 @@ function HeaderComponent() {
                                 <form className="d-flex" role="search" onSubmit={handleSearch}>
                                     <input
                                         className="form-control me-2"
+                                        id='search_form'
                                         type="search"
                                         placeholder="Search"
                                         aria-label="Search"
