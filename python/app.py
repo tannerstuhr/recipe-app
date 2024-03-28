@@ -48,6 +48,25 @@ def save_recipe():
     mongo.db.recipes.insert_one(recipe)
     return jsonify({'message': 'Recipe saved successfully'}), 201
 
+@app.route('/api/delete_recipe/<recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    # The recipe_id is expected to be passed in the URL
+
+    # Attempt to convert the provided id to a valid ObjectId
+    try:
+        obj_id = ObjectId(recipe_id)
+    except:
+        return jsonify({'error': 'Invalid recipe ID provided'}), 400
+
+    # Perform the deletion
+    result = mongo.db.recipes.delete_one({'_id': obj_id})
+
+    # Check if a document was deleted
+    if result.deleted_count:
+        return jsonify({'message': 'Recipe deleted successfully'}), 200
+    else:
+        return jsonify({'error': 'Recipe not found'}), 404
+
 @app.route('/api/saved_recipes', methods=['GET'])
 def get_saved_recipes():
     recipes = mongo.db.recipes.find()
