@@ -12,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+        <div className='hero-image'></div>
         <Routes>
           <Route path="/" element={
             <>
@@ -20,7 +21,6 @@ function App() {
             </>
           } />
           <Route path="/search" element={<SearchResults />} />
-
           <Route path="/saved-recipes" element={<SavedRecipes />} />
         </Routes>
       </div>

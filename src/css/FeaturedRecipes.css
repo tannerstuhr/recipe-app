@@ -1,0 +1,23 @@
+.featured-recipes {
+    text-align: center;
+    position: relative;
+    top: -30px;
+    padding: 15px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    z-index: 2;
+    background-color: white;
+  }
+
+.inner{
+    padding: 10px;
+    border: solid;
+    border-color: #6A994E;
+}
+
+.rule{
+    color: #BC4749;
+  }
