@@ -6,6 +6,7 @@ import SearchResults from './components/SearchResults';
 import FeaturedRecipes from './components/FeaturedRecipes';
 import RecipeCategories from './components/RecipeCategories';
 import SavedRecipes from './components/SavedRecipes';
+import CreateRecipe from './components/CreateRecipe';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           } />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/saved-recipes" element={<SavedRecipes />} />
+          <Route path="/create-recipe" element={<CreateRecipe />} />
         </Routes>
       </div>
     </Router>

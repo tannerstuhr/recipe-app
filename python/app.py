@@ -75,5 +75,26 @@ def get_saved_recipes():
     return json.dumps(recipes_list, default=json_util.default), 200
 
 
+@app.route('/api/create_recipe', methods=['POST'])
+def create_recipe():
+    """
+    Create a new recipe in the database.
+    """
+    # Get data from the request
+    recipe_data = request.get_json()
+
+    # Validate the data, ensuring required fields are present
+    if not recipe_data:
+        return jsonify({'error': 'No recipe data provided'}), 400
+    if 'title' not in recipe_data or 'description' not in recipe_data:
+        # You can add more required fields as necessary
+        return jsonify({'error': 'Missing required recipe data'}), 400
+
+    # Insert the recipe data into the database
+    mongo.db.created_recipes.insert_one(recipe_data)
+
+    # Return success message
+    return jsonify({'message': 'Recipe created successfully'}), 201
+
 if __name__ == '__main__':
     app.run(debug=True)
