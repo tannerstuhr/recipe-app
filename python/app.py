@@ -96,5 +96,17 @@ def create_recipe():
     # Return success message
     return jsonify({'message': 'Recipe created successfully'}), 201
 
+@app.route('/api/recipe/<int:recipe_id>', methods=['GET'])
+def get_recipe_information(recipe_id):
+    api_key = '4ff44dbca2414abebca530b60704163c'  # store in environment variable
+    url = f"https://api.spoonacular.com/recipes/{recipe_id}/information?apiKey={api_key}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return jsonify(response.json())
+    else:
+        return jsonify({"error": "Recipe not found"}), response.status_code
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import HeaderComponent from './HeaderComponent';
+import '../css/CreateRecipe.css'
 
 function CreateRecipe() {
   const [formData, setFormData] = useState({
@@ -34,22 +36,29 @@ function CreateRecipe() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        placeholder="Recipe title"
-      />
-      <textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        placeholder="Recipe description"
-      />
-      {/* Add inputs for ingredients and instructions */}
-      <button type="submit">Create Recipe</button>
-    </form>
+    <>
+      <HeaderComponent />
+      <form onSubmit={handleSubmit}>
+        <input
+          className='form-control me-2 recipe-input'
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Recipe title"
+        />
+        <textarea
+          className='form-control me-2 recipe-input'
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          placeholder="Recipe description"
+        />
+        {/* Add inputs for ingredients and instructions */}
+        <div className='btn-container'>
+          <button className='btn btn-outline-success' type="submit">Create Recipe</button>
+        </div>
+      </form>
+    </>
   );
 }
 

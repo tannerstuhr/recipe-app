@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import HeaderComponent from './HeaderComponent';
 
 function SavedRecipes() {
     const [savedRecipes, setSavedRecipes] = useState([]);
@@ -45,6 +46,7 @@ function SavedRecipes() {
 
     return (
         <div>
+            <HeaderComponent />
             <h2>Saved Recipes</h2>
             <ul>
                 {savedRecipes.map((recipe) => (

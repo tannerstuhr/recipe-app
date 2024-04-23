@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-
+import { useSearchParams, Link } from 'react-router-dom';
+import HeaderComponent from './HeaderComponent';
 function SearchResults() {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('query');
@@ -45,11 +45,14 @@ function SearchResults() {
 
     return (
         <div>
+            <HeaderComponent />
             {recipes.map((recipe) => (
                 <div key={recipe.id} className="card" style={{ width: '18rem' }}>
                     <img src={recipe.image} className="card-img-top" alt={recipe.title} />
                     <div className="card-body">
-                        <h5 className="card-title">{recipe.title}</h5>
+                        <h5 className="card-title">
+                            <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link> 
+                        </h5>
                         <p className="card-text">{recipe.summary}</p>
                         <button
                           onClick={() => saveRecipe(recipe)} 
