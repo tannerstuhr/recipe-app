@@ -32,7 +32,6 @@ function RecipeDetails() {
 
     return (
         <div>
-            <HeaderComponent />
             {recipeDetails && (
                 <div>
                     <h2>{recipeDetails.title}</h2>

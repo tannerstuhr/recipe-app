@@ -4,27 +4,24 @@ import './App.css';
 import SearchResults from './components/SearchResults';
 import SavedRecipes from './components/SavedRecipes';
 import CreateRecipe from './components/CreateRecipe';
+import YourRecipes from './components/YourRecipes.js';
 import HomePage from './components/HomePage';
 import RecipeDetails from './components/RecipeDetails';
+import CreatedRecipeDetails from './components/CreatedRecipeDetails.js';
+import HeaderComponent from './components/HeaderComponent.js';
 function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Header />
-        <div className='hero-image'></div>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <FeaturedRecipes />
-              <RecipeCategories />
-            </>
-          } /> */}
+          <HeaderComponent />
           <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/saved-recipes" element={<SavedRecipes />} />
+          <Route path="/your-recipes" element={<YourRecipes />} />
           <Route path="/create-recipe" element={<CreateRecipe />} />
           <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
+          <Route path="/created_recipe/:recipeId" element={<CreatedRecipeDetails />} />
         </Routes>
       </div>
     </Router>

@@ -45,7 +45,6 @@ function SearchResults() {
 
     return (
         <div>
-            <HeaderComponent />
             {recipes.map((recipe) => (
                 <div key={recipe.id} className="card" style={{ width: '18rem' }}>
                     <img src={recipe.image} className="card-img-top" alt={recipe.title} />
@@ -55,8 +54,8 @@ function SearchResults() {
                         </h5>
                         <p className="card-text">{recipe.summary}</p>
                         <button
-                          onClick={() => saveRecipe(recipe)} 
-                          className="btn btn-outline-success">
+                        onClick={() => saveRecipe(recipe)} 
+                        className="btn btn-outline-success">
                             Save Recipe
                         </button>
                     </div>

@@ -37,7 +37,6 @@ function CreateRecipe() {
 
   return (
     <>
-      <HeaderComponent />
       <form onSubmit={handleSubmit}>
         <input
           className='form-control me-2 recipe-input'

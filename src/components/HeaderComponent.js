@@ -28,6 +28,9 @@ function HeaderComponent() {
                                 <NavLink className="nav-link" to="/saved-recipes">Saved Recipes</NavLink>
                             </li>
                             <li class="nav-item">
+                                <NavLink className="nav-link" to="/your-recipes">Your Recipes</NavLink>
+                            </li>
+                            <li class="nav-item">
                                 <NavLink className="nav-link" to="/create-recipe">Create Recipe</NavLink>
                             </li>
                             <li class="nav-item">

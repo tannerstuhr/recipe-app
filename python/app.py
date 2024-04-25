@@ -74,6 +74,12 @@ def get_saved_recipes():
     recipes_list = list(recipes)
     return json.dumps(recipes_list, default=json_util.default), 200
 
+@app.route('/api/your_recipes', methods=['GET'])
+def get_your_recipes():
+    recipes = mongo.db.created_recipes.find()
+    # Convert the cursor to a list and then use json_util to handle MongoDB specific types
+    recipes_list = list(recipes)
+    return json.dumps(recipes_list, default=json_util.default), 200
 
 @app.route('/api/create_recipe', methods=['POST'])
 def create_recipe():
@@ -105,6 +111,24 @@ def get_recipe_information(recipe_id):
         return jsonify(response.json())
     else:
         return jsonify({"error": "Recipe not found"}), response.status_code
+
+@app.route('/api/created_recipe/<recipe_id>', methods=['GET'])
+def get_created_recipe_information(recipe_id):
+    try:
+        # Convert the string ID to a MongoDB ObjectId
+        obj_id = ObjectId(recipe_id)
+    except:
+        return jsonify({'error': 'Invalid recipe ID format'}), 400
+
+    # Fetch the recipe from the 'created_recipes' collection using the ObjectId
+    recipe = mongo.db.created_recipes.find_one({'_id': obj_id})
+
+    if recipe:
+        # Convert the MongoDB document to a JSON serializable format
+        return json.dumps(recipe, default=json_util.default), 200
+    else:
+        return jsonify({'error': 'Recipe not found'}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
