@@ -9,6 +9,7 @@ import HomePage from './components/HomePage';
 import RecipeDetails from './components/RecipeDetails';
 import CreatedRecipeDetails from './components/CreatedRecipeDetails.js';
 import HeaderComponent from './components/HeaderComponent.js';
+import EditRecipe from './components/EditRecipe.js';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/create-recipe" element={<CreateRecipe />} />
           <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
           <Route path="/created_recipe/:recipeId" element={<CreatedRecipeDetails />} />
+          <Route path="/edit_recipe/:recipeId" element={<EditRecipe />} />
         </Routes>
       </div>
     </Router>

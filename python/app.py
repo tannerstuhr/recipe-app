@@ -130,6 +130,24 @@ def get_created_recipe_information(recipe_id):
         return jsonify({'error': 'Recipe not found'}), 404
 
 
+@app.route('/api/update_recipe/<recipe_id>', methods=['PUT'])
+def update_recipe(recipe_id):
+    try:
+        obj_id = ObjectId(recipe_id)
+    except:
+        return jsonify({'error': 'Invalid recipe ID format'}), 400
+    
+    # Get the updated data from the request body
+    updated_data = request.get_json()
+    
+    # Update the recipe in the database
+    mongo.db.created_recipes.update_one(
+        {'_id': obj_id},
+        {'$set': updated_data}
+    )
+    return jsonify({'message': 'Recipe updated successfully'}), 200
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import HeaderComponent from './HeaderComponent';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 function YourRecipes() {
     const [yourRecipes, setYourRecipes] = useState([]);
+    const [editingRecipeId, setEditingRecipeId] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchYourRecipes = async () => {
@@ -56,6 +61,12 @@ function YourRecipes() {
                             <h3 className='card-title'>
                                 <Link to={`/created_recipe/${recipe._id.$oid}`}>{recipe.title}</Link>
                             </h3>
+                            <button
+                                onClick={() => navigate(`/edit_recipe/${recipe._id.$oid}`)}
+                                className='btn btn-outline-primary'>
+                                Edit Recipe
+                            </button>
+
                             <button 
                                 // onClick={() => deleteRecipe(recipe._id.$oid)}
                                 className='btn btn-outline-danger'>
