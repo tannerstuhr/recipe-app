@@ -19,9 +19,17 @@ def hello():
 @app.route('/api/search', methods=['GET'])
 def search_recipes():
     query = request.args.get('query')
+    cuisine = request.args.get('cuisine')
     api_key = '4ff44dbca2414abebca530b60704163c'  # store in environment variable
-    url = f"https://api.spoonacular.com/recipes/complexSearch?query={query}&apiKey={api_key}"
-    response = requests.get(url)
+    url = "https://api.spoonacular.com/recipes/complexSearch"
+    params = {'apiKey': api_key}
+
+    if query:
+        params['query'] = query
+    if cuisine:
+        params['cuisine'] = cuisine
+
+    response = requests.get(url, params=params)
     return jsonify(response.json())
 
 @app.route('/api/like', methods=['POST'])

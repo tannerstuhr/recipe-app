@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import HeaderComponent from './HeaderComponent';
+
 function SearchResults() {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('query');
+    const cuisine = searchParams.get('cuisine'); // Retrieve the cuisine parameter if it exists
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
+        // Determine the base URL based on the presence of 'query' or 'cuisine'
+        const baseUrl = `http://localhost:5000/api/search`;
+        let url = baseUrl;
         if (query) {
+            url += `?query=${encodeURIComponent(query)}`;
+        }
+        if (cuisine) {
+            url += `${query ? '&' : '?'}cuisine=${encodeURIComponent(cuisine)}`;
+        }
+
+        if (query || cuisine) {
             const fetchRecipes = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/search?query=${encodeURIComponent(query)}`);
+                    const response = await fetch(url);
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
@@ -22,7 +33,7 @@ function SearchResults() {
             };
             fetchRecipes();
         }
-    }, [query]); // Dependency on query ensures useEffect reruns when query changes
+    }, [query, cuisine]); // React to changes in either query or cuisine
 
     const saveRecipe = async (recipe) => {
         try {
@@ -53,9 +64,7 @@ function SearchResults() {
                             <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link> 
                         </h5>
                         <p className="card-text">{recipe.summary}</p>
-                        <button
-                        onClick={() => saveRecipe(recipe)} 
-                        className="btn btn-outline-success">
+                        <button onClick={() => saveRecipe(recipe)} className="btn btn-outline-success">
                             Save Recipe
                         </button>
                     </div>
