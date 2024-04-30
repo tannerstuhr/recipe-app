@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HeaderComponent from './HeaderComponent';
+import { Link } from 'react-router-dom';
 
 function SavedRecipes() {
     const [savedRecipes, setSavedRecipes] = useState([]);
@@ -52,7 +52,7 @@ function SavedRecipes() {
                     <div key={recipe._id.$oid} className='card' style={{ width: '18rem' }}>
                         <img src={recipe.image} className="card-img-top" alt={recipe.title} />
                         <div className='card-body'>
-                            <h3 className='card-title'>{recipe.title}</h3>
+                            <Link to={`/recipe/${recipe.id}`}><h3 className='card-title'>{recipe.title}</h3></Link> 
                             <button 
                                 onClick={() => deleteRecipe(recipe._id.$oid)}
                                 className='btn btn-outline-danger'>

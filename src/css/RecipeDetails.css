@@ -1,0 +1,19 @@
+@media print {
+    /* Hide the print button */
+    .print-button {
+        display: none;
+    }
+    /* Show only the recipe details section */
+    body * {
+        visibility: hidden; /* hides everything to begin with */
+    }
+    .recipe-details, .recipe-details * {
+        visibility: visible; /* shows only recipe details content */
+    }
+    .recipe-details {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
