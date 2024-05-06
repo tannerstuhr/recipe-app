@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import '../css/RecipeCategories.css'
+
 function RecipeCategories() {
   const navigate = useNavigate();
   const popularCuisines = ["Italian", "Chinese", "Japanese", "Indian"];
@@ -28,18 +30,21 @@ function RecipeCategories() {
       <h2>Find What Works For You</h2>
       <div className="category-buttons">
         {popularCuisines.map(cuisine => (
-          <button key={cuisine} onClick={() => handleCuisineSearch(cuisine)}>
-            {cuisine}
-          </button>
+          <div key={cuisine} className="cuisine-image-container" onClick={() => handleCuisineSearch(cuisine)}>
+            <img src={`/images/${cuisine.toLowerCase()}.jpeg`} alt={cuisine} className="cuisine-image" />
+            <div className="overlay">{cuisine}</div>
+          </div>
         ))}
       </div>
-      <select value={selectedCuisine} onChange={handleCuisineChange}>
-        <option value="">Select Cuisine</option>
-        {allCuisines.map(cuisine => (
-          <option key={cuisine} value={cuisine}>{cuisine}</option>
-        ))}
-      </select>
-      <button onClick={() => handleCuisineSearch(selectedCuisine)}>Search Cuisine</button>
+      <div className='input-container'>
+        <select class="form-select" value={selectedCuisine} onChange={handleCuisineChange}>
+          <option value="">Select Cuisine</option>
+          {allCuisines.map(cuisine => (
+            <option key={cuisine} value={cuisine}>{cuisine}</option>
+          ))}
+        </select>
+        <button className="btn btn-outline-secondary btn-sm" onClick={() => handleCuisineSearch(selectedCuisine)}>Search Cuisine</button>
+      </div>
     </div>
   );
 }

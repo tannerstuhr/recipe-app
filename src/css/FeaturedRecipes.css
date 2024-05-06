@@ -12,17 +12,71 @@
     background-color: #f7f5f2;
   }
 
-.inner{
-    padding: 10px;
-    border: solid;
-    border-color: #6A994E;
+  .center-text {
+    text-align: center; 
+  }
+
+.h-rule{
+  border-bottom: solid;
+  border-color: #6a994e ;
+  max-width: 90%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
-.rule{
-    color: #BC4749;
-  }
 
 .search_focus_button{
   color: #BC4749;
   text-decoration: none;
+}
+
+
+/* FeaturedRecipes.css */
+.featured-recipes .featured-recipes-inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.featured-recipes-inner {
+  padding: 0 10px; 
+}
+
+
+.heading {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.rule {
+  border: none;
+  height: 2px;
+  background: black;
+  margin-bottom: 20px;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.recipe-image {
+  width: 100%; /* Make the image fill the container */
+  height: 260px; /* Fixed height for all images */
+  object-fit: cover; /* Cover ensures the image covers the space without distorting */
+  border-radius: 8px; /* Optional styling */
+}
+
+.recipe-title {
+  text-align: center;
+  margin-top: 10px;
 }

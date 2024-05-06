@@ -18,15 +18,15 @@
 
 .featured{
     position: absolute;
-  bottom: -50px; /* Half of the height of the featured recipes to pull it up over the hero image */
+    margin-top: 50px;
+  bottom: -50px; 
   left: 0;
   right: 0;
-  margin: auto; /* Centers the box if it has a set width */
-  height: 100px; /* Adjust as needed */
-  width: 80%; /* Adjust as needed */
-  background: white; /* Your desired background */
-  z-index: 10; /* Ensures it's above the hero image */
-  /* Additional styling */
+  margin: auto; 
+  height: 100px; 
+  width: 80%; 
+  background: white; 
+  z-index: 10; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

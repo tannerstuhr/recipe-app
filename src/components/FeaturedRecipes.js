@@ -20,12 +20,17 @@ const focusSearch = () => {
 
 
 function FeaturedRecipes() {
+  const recipes = [
+    { id: 660406, title: 'Smokey Chicken Tacos', image: `/images/chicken-tacos-2.jpeg` },
+    { id: 649555, title: 'Weeknight Lemon Chicken Breasts', image: `/images/lemon-chicken.jpeg` },
+    { id: 633876, title: 'Crispy Baked Ziti', image: `/images/baked-ziti.jpeg` }
+  ];
+
     return (
-      <div className="featured-recipes">
+      <div className="featured-recipes-outer">
         <div className='inner'>
           <h2 className='heading'>Whats For Dinner?</h2>
-          <hr className='rule'></hr>
-          <p>
+          <p className='center-text'>
             <a 
             onClick={focusSearch}
             style={{ cursor: 'pointer' }}
@@ -33,8 +38,20 @@ function FeaturedRecipes() {
             >
               Search 
             </a> a Recipe Or Choose One of Our Featured Recipes Below!</p>
-          {/* Carousel or slides go here. You can use a library like SwiperJS for easy implementation. */}
+            <div className='h-rule'></div>
         </div>
+        <div className="featured-recipes-inner">
+          <div className="recipe-grid">
+            {recipes.map((recipe) => (
+              <div key={recipe.id} className="recipe-card">
+                <img src={recipe.image} alt={recipe.title} className="recipe-image" />
+                <h3 className="recipe-title">{recipe.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='h-rule'></div>
+
       </div>
     );
   }

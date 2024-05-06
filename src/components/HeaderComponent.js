@@ -34,7 +34,7 @@ function HeaderComponent() {
                                 <NavLink className="nav-link" to="/create-recipe">Create Recipe</NavLink>
                             </li>
                             <li class="nav-item">
-                                <form className="d-flex" role="search" onSubmit={handleSearch}>
+                                <form className="d-flex search-input" role="search" onSubmit={handleSearch}>
                                     <input
                                         className="form-control me-2"
                                         id='search_form'
