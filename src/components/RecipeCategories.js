@@ -27,7 +27,7 @@ function RecipeCategories() {
 
   return (
     <div className="categories">
-      <h2>Find What Works For You</h2>
+      <h2>Or Search By Cuisine!</h2>
       <div className="category-buttons">
         {popularCuisines.map(cuisine => (
           <div key={cuisine} className="cuisine-image-container" onClick={() => handleCuisineSearch(cuisine)}>

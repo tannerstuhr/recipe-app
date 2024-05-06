@@ -62,12 +62,17 @@
   gap: 20px;
 }
 
+.featured-recipe-link{
+  text-decoration: none;
+}
+
 .recipe-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
+
 
 .recipe-image {
   width: 100%; /* Make the image fill the container */
@@ -79,4 +84,5 @@
 .recipe-title {
   text-align: center;
   margin-top: 10px;
+  color: black;
 }

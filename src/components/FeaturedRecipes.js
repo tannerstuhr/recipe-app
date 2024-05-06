@@ -23,8 +23,8 @@ const focusSearch = () => {
 
 function FeaturedRecipes() {
   const recipes = [
-    { id: 660406, title: 'Smokey Chicken Tacos', image: `/images/chicken-tacos-2.jpeg` },
-    { id: 649555, title: 'Weeknight Lemon Chicken Breasts', image: `/images/lemon-chicken.jpeg` },
+    { id: 986003, title: 'Smokey Chicken Tacos', image: `/images/chicken-tacos-2.jpeg` },
+    { id: 649555, title: 'Lemon Chicken Breasts', image: `/images/lemon-chicken.jpeg` },
     { id: 633876, title: 'Crispy Baked Ziti', image: `/images/baked-ziti.jpeg` }
   ];
 
@@ -45,7 +45,7 @@ function FeaturedRecipes() {
         <div className="featured-recipes-inner">
           <div className="recipe-grid">
             {recipes.map((recipe) => (
-              <Link to={`/recipe/${recipe.id}`}>
+              <Link className='featured-recipe-link' to={`/recipe/${recipe.id}`}>
                 <div key={recipe.id} className="recipe-card">
                   <img src={recipe.image} alt={recipe.title} className="recipe-image" />
                   <h3 className="recipe-title">{recipe.title}</h3>
