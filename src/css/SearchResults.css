@@ -1,0 +1,38 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    padding: 20px; /* Padding around the grid */
+    justify-content: space-around; /* Distributes space evenly around items */
+}
+
+.card {
+    flex: 1 1 22%; /* Initially four cards per row at full screen */
+    max-width: 22%; /* Max width for four cards per row */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Optional shadow for better visibility */
+    margin: 10px; /* Margin around each card */
+}
+
+/* Medium screens: Three cards per row */
+@media (max-width: 1200px) {
+    .card {
+        flex-basis: 30%; /* Adjust basis for three cards per row */
+        max-width: 30%;
+    }
+}
+
+/* Smaller screens: Two cards per row */
+@media (max-width: 800px) {
+    .card {
+        flex-basis: 48%; /* Adjust basis for two cards per row */
+        max-width: 48%;
+    }
+}
+
+/* Very small screens: Two per row */
+@media (max-width: 500px) {
+    .card {
+        flex-basis: 48%; /* Keeps two cards per row on very small screens */
+        max-width: 48%;
+    }
+}

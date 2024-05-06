@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
+import '../css/SearchResults.css'
 
 function SearchResults() {
     const [searchParams] = useSearchParams();
@@ -54,24 +55,31 @@ function SearchResults() {
         }
     };
 
+    const headingText = query ? `Showing results for "${query}"` : (cuisine ? `Showing results for ${cuisine} Cuisine` : "Search Results");
+
     return (
-        <div>
-            {recipes.map((recipe) => (
-                <div key={recipe.id} className="card" style={{ width: '18rem' }}>
-                    <img src={recipe.image} className="card-img-top" alt={recipe.title} />
-                    <div className="card-body">
-                        <h5 className="card-title">
-                            <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link> 
-                        </h5>
-                        <p className="card-text">{recipe.summary}</p>
-                        <button onClick={() => saveRecipe(recipe)} className="btn btn-outline-success">
-                            Save Recipe
-                        </button>
+        <>
+            <h2 className='heading'>{headingText}</h2> 
+            <div className='h-rule'></div>
+            <div className="cards-container">
+                {recipes.map((recipe) => (
+                    <div key={recipe.id} className="card" style={{ width: '100%' }}> {/* Adjust width here */}
+                        <img src={recipe.image} className="card-img-top" alt={recipe.title} />
+                        <div className="card-body">
+                            <h5 className="card-title">
+                                <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+                            </h5>
+                            <p className="card-text">{recipe.summary}</p>
+                            <button onClick={() => saveRecipe(recipe)} className="btn btn-outline-success">
+                                Save Recipe
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+        </>
     );
+    
 }
 
 export default SearchResults;
