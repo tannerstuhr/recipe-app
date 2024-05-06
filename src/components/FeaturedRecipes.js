@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/FeaturedRecipes.css'
 
 const focusSearch = () => {
@@ -43,10 +45,12 @@ function FeaturedRecipes() {
         <div className="featured-recipes-inner">
           <div className="recipe-grid">
             {recipes.map((recipe) => (
-              <div key={recipe.id} className="recipe-card">
-                <img src={recipe.image} alt={recipe.title} className="recipe-image" />
-                <h3 className="recipe-title">{recipe.title}</h3>
-              </div>
+              <Link to={`/recipe/${recipe.id}`}>
+                <div key={recipe.id} className="recipe-card">
+                  <img src={recipe.image} alt={recipe.title} className="recipe-image" />
+                  <h3 className="recipe-title">{recipe.title}</h3>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
