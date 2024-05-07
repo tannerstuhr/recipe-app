@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import HeaderComponent from './HeaderComponent';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -59,7 +58,7 @@ function YourRecipes() {
                         <img src={recipe.image} className="card-img-top" alt={recipe.title} />
                         <div className='card-body'>
                             <h3 className='card-title'>
-                                <Link to={`/created_recipe/${recipe._id.$oid}`}>{recipe.title}</Link>
+                                <Link className='recipe-link' to={`/created_recipe/${recipe._id.$oid}`}>{recipe.title}</Link>
                             </h3>
                             <button
                                 onClick={() => navigate(`/edit_recipe/${recipe._id.$oid}`)}

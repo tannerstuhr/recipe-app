@@ -67,7 +67,7 @@ function SearchResults() {
                         <img src={recipe.image} className="card-img-top" alt={recipe.title} />
                         <div className="card-body">
                             <h5 className="card-title">
-                                <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+                                <Link className='recipe-link' to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
                             </h5>
                             <p className="card-text">{recipe.summary}</p>
                             <button onClick={() => saveRecipe(recipe)} className="btn btn-outline-success">

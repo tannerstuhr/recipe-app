@@ -48,12 +48,12 @@ function SavedRecipes() {
     return (
         <div>
             <h2>Saved Recipes</h2>
-            <ul>
+            <ul className='cards-container'>
                 {savedRecipes.map((recipe) => (
                     <div key={recipe._id.$oid} className='card' style={{ width: '18rem' }}>
                         <img src={recipe.image} className="card-img-top" alt={recipe.title} />
                         <div className='card-body'>
-                            <Link to={`/recipe/${recipe.id}`}><h3 className='card-title'>{recipe.title}</h3></Link> 
+                            <Link className='recipe-link' to={`/recipe/${recipe.id}`}><h3 className='card-title'>{recipe.title}</h3></Link> 
                             <button 
                                 onClick={() => deleteRecipe(recipe._id.$oid)}
                                 className='btn btn-outline-danger'>

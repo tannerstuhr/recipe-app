@@ -4,6 +4,12 @@
     gap: 20px; /* Space between cards */
     padding: 20px; /* Padding around the grid */
     justify-content: space-around; /* Distributes space evenly around items */
+    text-decoration: none;
+}
+
+.recipe-link{
+    text-decoration: none;
+    color: black;
 }
 
 .card {
@@ -11,6 +17,7 @@
     max-width: 22%; /* Max width for four cards per row */
     box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Optional shadow for better visibility */
     margin: 10px; /* Margin around each card */
+    text-decoration: none;
 }
 
 /* Medium screens: Three cards per row */
