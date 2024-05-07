@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 function YourRecipes() {
     const [yourRecipes, setYourRecipes] = useState([]);
-    const [editingRecipeId, setEditingRecipeId] = useState(null);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,26 +22,23 @@ function YourRecipes() {
         fetchYourRecipes();
     }, []);
 
-    // const deleteRecipe = async (recipeOid) => {
-    //     try {
-    //         const response = await fetch(`http://localhost:5000/api/delete_recipe/${recipeOid}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //         });
-    //         if (!response.ok) {
-    //             const errorData = await response.json();
-    //             throw new Error(`Failed to delete recipe: ${errorData.error}`);
-    //         }
-    //         // Assuming your server's response includes the deleted recipe's ID
-    //         // Update the state to remove the recipe
-    //         setSavedRecipes(prevRecipes => prevRecipes.filter((recipe) => recipe._id.$oid !== recipeOid));
-    //     } catch (error) {
-    //         console.error("Error deleting recipe:", error);
-    //     }
-    // };
+    const deleteRecipe = async (recipeId) => {
+        if (!window.confirm("Are you sure you want to delete this recipe?")) return;
     
+        try {
+            const response = await fetch(`http://localhost:5000/api/delete_recipe/${recipeId}`, {
+                method: 'DELETE'
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to delete recipe: ${await response.text()}`);
+            }
+    
+            setYourRecipes(yourRecipes.filter(recipe => recipe._id.$oid !== recipeId));
+        } catch (error) {
+            console.error("Error deleting recipe:", error.message);
+        }
+    };
     
     
 
@@ -67,11 +60,10 @@ function YourRecipes() {
                             </button>
 
                             <button 
-                                // onClick={() => deleteRecipe(recipe._id.$oid)}
+                                onClick={() => deleteRecipe(recipe._id.$oid)}
                                 className='btn btn-outline-danger'>
                                 Delete Recipe
                             </button>
-
                         </div>
                     </div>
                 ))}

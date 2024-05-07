@@ -34,8 +34,7 @@ function SavedRecipes() {
                 const errorData = await response.json();
                 throw new Error(`Failed to delete recipe: ${errorData.error}`);
             }
-            // Assuming your server's response includes the deleted recipe's ID
-            // Update the state to remove the recipe
+
             setSavedRecipes(prevRecipes => prevRecipes.filter((recipe) => recipe._id.$oid !== recipeOid));
         } catch (error) {
             console.error("Error deleting recipe:", error);
