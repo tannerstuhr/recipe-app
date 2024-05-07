@@ -57,39 +57,41 @@ function RecipeDetails() {
         <div className="recipe-details">
             {recipeDetails && (
                 <>
-                    <h2>{recipeDetails.title}</h2>
-                    <img src={recipeDetails.image} alt={recipeDetails.title} />
-                    <div dangerouslySetInnerHTML={{ __html: recipeDetails.summary }} />
-                    
-                    <h3>Ingredients</h3>
-                    <ul>
-                        {recipeDetails.extendedIngredients.map((ingredient) => (
-                            <li key={ingredient.id}>
-                                {ingredient.original}
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="main-info">
+                        <h2 style={{ textAlign: 'center' }}>{recipeDetails.title}</h2>
+                        <div className='h-rule'></div>
+                        <div dangerouslySetInnerHTML={{ __html: recipeDetails.summary }} />
 
-                    <h3>Instructions</h3>
-                    {recipeDetails.analyzedInstructions.length > 0 ? (
-                        recipeDetails.analyzedInstructions[0].steps.map((step, index) => (
-                            <p key={index}><strong>Step {index + 1}:</strong> {step.step}</p>
-                        ))
-                    ) : (
-                        <p>No detailed instructions provided.</p>
-                    )}
+                        <h3>Ingredients</h3>
+                        <ul>
+                            {recipeDetails.extendedIngredients.map((ingredient) => (
+                                <li key={ingredient.id}>{ingredient.original}</li>
+                            ))}
+                        </ul>
 
-                    <h3>Nutrition</h3>
-                    <p>Calories: {recipeDetails.nutrition?.calories || 'N/A'}</p>
-                    {recipeDetails.winePairing && (
-                        <>
-                            <h3>Wine Pairing</h3>
-                            <p>{recipeDetails.winePairing.pairingText}</p>
-                        </>
-                    )}
+                        <h3>Instructions</h3>
+                        {recipeDetails.analyzedInstructions.length > 0 ? (
+                            recipeDetails.analyzedInstructions[0].steps.map((step, index) => (
+                                <p key={index}><strong>Step {index + 1}:</strong> {step.step}</p>
+                            ))
+                        ) : (
+                            <p>No detailed instructions provided.</p>
+                        )}
+                    </div>
 
-                    <button onClick={printRecipe} className="print-button">Print Recipe</button>
-                    <button onClick={saveRecipe} className="btn btn-outline-success">Save Recipe</button>  {/* Added Save Recipe button */}
+                    <div className="supplementary-info">
+                        <img src={recipeDetails.image} alt={recipeDetails.title} />
+                        {/* <h3>Nutrition</h3>
+                        <p>Calories: {recipeDetails.nutrition?.calories || 'N/A'}</p> */}
+                        {recipeDetails.winePairing && (
+                            <>
+                                <h3>Wine Pairing</h3>
+                                <p>{recipeDetails.winePairing.pairingText}</p>
+                            </>
+                        )}
+                        <button onClick={printRecipe} className="print-button">Print Recipe</button>
+                        <button onClick={saveRecipe} className="btn btn-outline-success save-button">Save Recipe</button>
+                    </div>
                 </>
             )}
         </div>

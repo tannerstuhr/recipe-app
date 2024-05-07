@@ -17,3 +17,97 @@
         width: 100%;
     }
 }
+.h-rule{
+    border-bottom: solid;
+    border-color: #6a994e ;
+    max-width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+
+.recipe-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.main-info, .supplementary-info {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.main-info {
+    flex: 2 1 60%; /* takes up 2/3 of the space */
+    margin-right: 20px;
+}
+
+.supplementary-info {
+    flex: 1 1 30%; /* takes up 1/3 of the space */
+}
+
+h2, h3 {
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.print-button, .save-button {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+p, li {
+    color: #666;
+    line-height: 1.6;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+
+/* Additional styles for button layout */
+.print-button,
+.save-button {
+  display: block; /* Make buttons block-level elements */
+  width: 100%; /* Full width to stretch across container */
+  margin-top: 10px; /* Add some margin on the top for spacing */
+}
+
+.print-button{
+    background-color: rgb(174, 155, 109);
+}
+
+.print-button:hover{
+    background-color: rgb(122, 108, 75);
+}
