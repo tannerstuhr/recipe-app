@@ -45,11 +45,12 @@ function YourRecipes() {
 
     return (
         <div>
-            <h2>Your Recipes</h2>
+            <h2 className='heading'>Your Recipes</h2>
+            <div className='h-rule'></div>
             <ul className='cards-container'> 
                 {yourRecipes.map((recipe) => (
                     <div key={recipe._id.$oid} className='card' style={{ width: '18rem' }}>
-                        <img src={recipe.image} className="card-img-top" alt={recipe.title} />
+                        {/* <img src={recipe.image} className="card-img-top" alt={recipe.title} /> */}
                         <div className='card-body'>
                             <h3 className='card-title'>
                                 <Link className='recipe-link' to={`/created_recipe/${recipe._id.$oid}`}>{recipe.title}</Link>

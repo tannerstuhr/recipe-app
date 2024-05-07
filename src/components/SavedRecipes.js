@@ -45,7 +45,8 @@ function SavedRecipes() {
 
     return (
         <div>
-            <h2>Saved Recipes</h2>
+            <h2 className='heading'>Saved Recipes</h2>
+            <div className='h-rule'></div>
             <ul className='cards-container'>
                 {savedRecipes.map((recipe) => (
                     <div key={recipe._id.$oid} className='card' style={{ width: '18rem' }}>
