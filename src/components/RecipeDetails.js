@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../css/RecipeDetails.css'
+import '../css/RecipeDetails.css';
 
 function RecipeDetails() {
     const { recipeId } = useParams();
@@ -25,6 +25,26 @@ function RecipeDetails() {
         };
         fetchRecipeDetails();
     }, [recipeId]);
+
+    const saveRecipe = async () => {
+        if (!recipeDetails) return;
+        try {
+            const response = await fetch('http://localhost:5000/api/save_recipe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(recipeDetails),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to save recipe');
+            }
+            const data = await response.json();
+            console.log(data.message); // Handle success notification
+        } catch (error) {
+            console.error("Error saving recipe:", error);
+        }
+    };
 
     const printRecipe = () => {
         window.print();
@@ -69,6 +89,7 @@ function RecipeDetails() {
                     )}
 
                     <button onClick={printRecipe} className="print-button">Print Recipe</button>
+                    <button onClick={saveRecipe} className="btn btn-outline-success">Save Recipe</button>  {/* Added Save Recipe button */}
                 </>
             )}
         </div>
