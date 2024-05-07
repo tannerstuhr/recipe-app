@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import "../css/SavedRecipes.css"
 
 function YourRecipes() {
     const [yourRecipes, setYourRecipes] = useState([]);
@@ -45,7 +46,7 @@ function YourRecipes() {
     return (
         <div>
             <h2>Your Recipes</h2>
-            <ul>
+            <ul className='cards-container'> 
                 {yourRecipes.map((recipe) => (
                     <div key={recipe._id.$oid} className='card' style={{ width: '18rem' }}>
                         <img src={recipe.image} className="card-img-top" alt={recipe.title} />

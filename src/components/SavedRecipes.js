@@ -24,7 +24,7 @@ function SavedRecipes() {
 
     const deleteRecipe = async (recipeOid) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/delete_recipe/${recipeOid}`, {
+            const response = await fetch(`http://localhost:5000/api/delete_saved_recipe/${recipeOid}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,13 +34,12 @@ function SavedRecipes() {
                 const errorData = await response.json();
                 throw new Error(`Failed to delete recipe: ${errorData.error}`);
             }
-
+    
             setSavedRecipes(prevRecipes => prevRecipes.filter((recipe) => recipe._id.$oid !== recipeOid));
         } catch (error) {
             console.error("Error deleting recipe:", error);
         }
     };
-    
     
     
 

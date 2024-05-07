@@ -24,21 +24,20 @@ function CreateRecipe() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Additional validation can be done here
     try {
       const response = await fetch('http://localhost:5000/api/create_recipe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
       if (!response.ok) {
         throw new Error('Failed to create recipe');
       }
-      const data = await response.json();
-      console.log(data.message);
-      // Reset the form or navigate the user to another page
+      const result = await response.json();
+      console.log(result.message);
+      // Reset the form
       setFormData({
         title: '',
         description: '',

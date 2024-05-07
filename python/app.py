@@ -70,6 +70,20 @@ def delete_recipe(recipe_id):
         return jsonify({'error': 'Recipe not found'}), 404
 
 
+@app.route('/api/delete_saved_recipe/<recipe_id>', methods=['DELETE'])
+def delete_saved_recipe(recipe_id):
+    try:
+        obj_id = ObjectId(recipe_id)
+    except Exception as e:
+        return jsonify({'error': 'Invalid recipe ID format: ' + str(e)}), 400
+
+    result = mongo.db.recipes.delete_one({'_id': obj_id})  # Assuming 'recipes' is the collection for saved recipes
+    if result.deleted_count:
+        return jsonify({'message': 'Recipe deleted successfully'}), 200
+    else:
+        return jsonify({'error': 'Recipe not found'}), 404
+
+
 
 @app.route('/api/saved_recipes', methods=['GET'])
 def get_saved_recipes():

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import '../css/EditRecipe.css'
 
 function EditRecipe() {
   const { recipeId } = useParams();
@@ -7,10 +8,10 @@ function EditRecipe() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    ingredients: '',
+    ingredients: [],
     instructions: ''
   });
-  
+
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       try {
@@ -19,24 +20,34 @@ function EditRecipe() {
           throw new Error('Failed to fetch recipe details');
         }
         const recipe = await response.json();
-        setFormData({ // make sure the fields match with your form data structure
+        setFormData({
           title: recipe.title,
           description: recipe.description,
-          ingredients: recipe.ingredients,
+          ingredients: recipe.ingredients || [],
           instructions: recipe.instructions
         });
       } catch (error) {
         console.error("Error fetching recipe details:", error);
       }
     };
-  
+
     if (recipeId) {
       fetchRecipeDetails();
     }
   }, [recipeId]);
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleIngredientChange = (e, index) => {
+    const newIngredients = [...formData.ingredients];
+    newIngredients[index] = e.target.value;
+    setFormData({ ...formData, ingredients: newIngredients });
+  };
+
+  const addIngredientField = () => {
+    setFormData({ ...formData, ingredients: [...formData.ingredients, ''] });
   };
 
   const handleSubmit = async (e) => {
@@ -47,39 +58,71 @@ function EditRecipe() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
       if (!response.ok) {
         throw new Error('Failed to update recipe');
       }
-      const data = await response.json();
-      console.log(data.message);
-      navigate(`/created_recipe/${recipeId}`); // Redirect to the updated recipe
+      const result = await response.json();
+      console.log(result.message);
+      navigate(`/created_recipe/${recipeId}`);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
   };
-  
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label className="form-label">Title</label>
+          <input
+            className="form-input"
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="Recipe title"
-        />
-        <textarea
-          className='form-control me-2 recipe-input'
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Recipe description"
-        />
-      <button type="submit">Update Recipe</button>
-    </form>
+          />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Description</label>
+          <textarea
+            className="form-textarea"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Recipe description"
+          />
+        </div>
+        <div className="form-group">
+          {formData.ingredients.map((ingredient, index) => (
+            <div key={index}>
+              <input
+                className="form-input ingredient-input"
+                value={ingredient}
+                onChange={(e) => handleIngredientChange(e, index)}
+                placeholder={`Ingredient ${index + 1}`}
+              />
+              {index === formData.ingredients.length - 1 && (
+                <button type="button" onClick={addIngredientField} className="add-ingredient-button">+</button>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="form-group">
+          <label className="form-label">Instructions</label>
+          <textarea
+            className="form-textarea"
+            name="instructions"
+            value={formData.instructions}
+            onChange={handleChange}
+            placeholder="Instructions"
+          />
+        </div>
+        <button type="submit" className="form-input-button">Update Recipe</button>
+      </form>
+    </div>
   );
-  
 }
-
 
 export default EditRecipe;
